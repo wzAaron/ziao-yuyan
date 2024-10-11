@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ziao & Yuyan Wedding</title>
+    <style>
+        body {
+            background-color: #fffaf0;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f8ece0;
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            border-bottom: 2px solid #e6d5c4;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #a0522d;
+            display: inline-block;
+            position: relative;
+        }
+        header h1::before,
+        header h1::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #a0522d;
+            top: 50%;
+        }
+        header h1::before {
+            right: 100%;
+            margin-right: 20px;
+        }
+        header h1::after {
+            left: 100%;
+            margin-left: 20px;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #8b4513;
+            margin-top: 10px;
+        }
+        .bouquet {
+            font-size: 2em;
+            margin: 0 15px;
+            vertical-align: middle;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            position: relative;
+            text-align: center;
+        }
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 250, 240, 0.7);
+            border: none;
+            font-size: 2em;
+            padding: 10px;
+            cursor: pointer;
+            color: #a0522d;
+        }
+        .nav-button:hover {
+            background-color: rgba(255, 250, 240, 0.9);
+        }
+        .nav-left {
+            left: -50px;
+        }
+        .nav-right {
+            right: -50px;
+        }
+        .scene-indicator {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #8b4513;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f8ece0;
+            color: #8b4513;
+            border-top: 2px solid #e6d5c4;
+        }
+        @media screen and (max-width: 768px) {
+            .nav-left {
+                left: -20px;
+            }
+            .nav-right {
+                right: -20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>
+        王子敖 <span class="bouquet">💐</span> 苏钰燕
+    </h1>    
+    <p>Richmond, British Columbia, Canada</p>
+    <p>2024, 10.9</p>
+</header>
+
+<div class="container">
+    <div class="embed-container">
+        <iframe id="sceneFrame" src="https://lumalabs.ai/embed/b64ad940-e903-463e-8270-5afbff4d8c91?mode=sparkles&background=%23ffffff&color=%23000000&showTitle=true&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&cinematicVideo=undefined&showMenu=false" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <button class="nav-button nav-left" onclick="prevScene()">&#10094;</button>
+    <button class="nav-button nav-right" onclick="nextScene()">&#10095;</button>
+    <div class="scene-indicator" id="sceneIndicator">1 / 3</div>
+</div>
+
+<footer>
+    &copy; 2024 Ziao &amp; Yuyan's Wedding. 新婚快乐！！！
+</footer>
+
+<script>
+    var scenes = [
+        "https://lumalabs.ai/embed/b64ad940-e903-463e-8270-5afbff4d8c91?mode=sparkles&background=%23ffffff&color=%23000000&showTitle=true&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&cinematicVideo=undefined&showMenu=false",
+        "https://lumalabs.ai/embed/2938bc13-d972-4acc-8abc-2eadebb48730?mode=sparkles&background=%23ffffff&color=%23000000&showTitle=true&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&cinematicVideo=undefined&showMenu=true",
+        "https://lumalabs.ai/embed/6ca7f456-423e-4157-bfb7-161ccb46d4e9?mode=sparkles&background=%23ffffff&color=%23000000&showTitle=true&loadBg=true&logoPosition=bottom-left&infoPosition=bottom-right&cinematicVideo=undefined&showMenu=false"
+    ];
+    var currentScene = 0;
+
+    function showScene(index) {
+        var frame = document.getElementById('sceneFrame');
+        var indicator = document.getElementById('sceneIndicator');
+        frame.src = scenes[index];
+        indicator.textContent = (index + 1) + ' / ' + scenes.length;
+    }
+
+    function prevScene() {
+        currentScene = (currentScene - 1 + scenes.length) % scenes.length;
+        showScene(currentScene);
+    }
+
+    function nextScene() {
+        currentScene = (currentScene + 1) % scenes.length;
+        showScene(currentScene);
+    }
+
+    // Initialize the scene indicator on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        showScene(currentScene);
+    });
+</script>
+
+</body>
+</html>
